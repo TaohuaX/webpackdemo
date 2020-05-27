@@ -1,0 +1,10 @@
+html,
+body {
+	height: 100vh;
+	background: teal;
+}
+.div {
+  display: flex;
+  transform: rotate(45deg);
+  backface-visibility: visible;
+}

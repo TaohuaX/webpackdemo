@@ -1,2 +1,2 @@
-import  name from './sync.js'
-console.log(name)
+import './common/main.scss'
+console.log(1112444)
