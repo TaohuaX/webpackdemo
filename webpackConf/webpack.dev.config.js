@@ -4,8 +4,7 @@ module.exports = merge(baseConfig, {
 	mode: 'development',
 	devServer: {
 		port: 3000,
-		progress: true,
-		contentBase: './dist',
+		// progress: true,
 		compress: true,
 		open: true
 	},
@@ -26,5 +25,6 @@ module.exports = merge(baseConfig, {
 				use: ['style-loader', 'css-loader', 'sass-loader']
 			}
 		]
-	}
+	},
+	devtool: 'eval-cheap-module-source-map'
 })

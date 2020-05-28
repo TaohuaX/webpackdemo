@@ -23,7 +23,10 @@ module.exports = merge(baseConfig, {
 				test: /\.(scss|sass)$/,
 				use: [
 					{
-						loader: MiniCssExtractPlugin.loader
+						loader: MiniCssExtractPlugin.loader,
+						options: {
+							publicPath: '../'
+						}
 					},
 					'css-loader',
 					{
@@ -53,5 +56,6 @@ module.exports = merge(baseConfig, {
 			chunkFilename: '[name]'
 		}),
 		new OptimizeCssAssetsPlugin()
-	]
+	],
+	devtool: 'nosource-source-map'
 })

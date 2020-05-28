@@ -1,2 +1,2 @@
 import './common/main.scss'
-console.log(1112444)
+console.log(1112444)()
