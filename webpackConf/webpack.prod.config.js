@@ -43,13 +43,13 @@ module.exports = merge(baseConfig, {
 		]
 	},
 	plugins: [
-		new BundleAnalyzerPlugin({
-			analyzerMode: 'server',
-			analyzerHost: '127.0.0.1',
-			analyzerPort: '8866',
-			reportFilename: 'report.html',
-			defaultSizes: 'parsed'
-		}),
+		// new BundleAnalyzerPlugin({
+		// 	analyzerMode: 'server',
+		// 	analyzerHost: '127.0.0.1',
+		// 	analyzerPort: '8866',
+		// 	reportFilename: 'report.html',
+		// 	defaultSizes: 'parsed'
+		// }),
 		new CleanWebpackPlugin(),
 		new MiniCssExtractPlugin({
 			filename: 'css/[name].[contenthash:10].css',

@@ -9,6 +9,7 @@
     "prod": "webpack --config ./webpackConf/webpack.prod.config.js",
     "c": "node ./custombundle.config.js",
     "serve": "webpack-dev-server --config ./webpackConf/webpack.dev.config.js",
+    "servep": "webpack-dev-server --config ./webpackConf/webpack.prod.config.js",
     "build": "webpack"
   },
   "keywords": [],
