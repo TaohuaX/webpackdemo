@@ -4,21 +4,40 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const { GenerateSW } = require('workbox-webpack-plugin')
 
 module.exports = merge(baseConfig, {
 	mode: 'production',
 	module: {
 		rules: [
-			// {
-			// 	test: /\.m?js$/,
-			// 	exclude: /(node_modules|bower_components)/,
-			// 	use: {
-			// 		loader: 'cloader',
-			// 		options: {
-			// 			data: '我是自定义loader的设置项'
-			// 		}
-			// 	}
-			// },
+			{
+				test: /\.m?js$/,
+				exclude: /(node_modules|bower_components)/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: [
+							[
+								'@babel/preset-env',
+								{
+									useBuiltIns: 'usage',
+									corejs: {
+										version: 3
+									},
+									targets: {
+										chrome: 60,
+										firefox: 60,
+										ie: 9,
+										safari: 10,
+										edge: 17
+									}
+								}
+							]
+						],
+						cacheDirectory: true
+					}
+				}
+			},
 			{
 				test: /\.(scss|sass)$/,
 				use: [
@@ -55,7 +74,18 @@ module.exports = merge(baseConfig, {
 			filename: 'css/[name].[contenthash:10].css',
 			chunkFilename: '[name]'
 		}),
-		new OptimizeCssAssetsPlugin()
+		new OptimizeCssAssetsPlugin(),
+		new GenerateSW({
+			clientsClaim: true, // 帮助serviceworker快速启动
+			skipWaiting: true // 删除旧的serviceworker
+		})
 	],
+	// node_modules单独打包
+	// 有公用的包不会多次引入
+	optimization: {
+		splitChunks: {
+			chunks: 'all'
+		}
+	},
 	devtool: 'nosource-source-map'
 })
