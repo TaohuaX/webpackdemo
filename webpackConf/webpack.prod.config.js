@@ -5,6 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { GenerateSW } = require('workbox-webpack-plugin')
+const ManifestPlugin = require('webpack-manifest-plugin')
 
 module.exports = merge(baseConfig, {
 	mode: 'production',
@@ -78,7 +79,8 @@ module.exports = merge(baseConfig, {
 		new GenerateSW({
 			clientsClaim: true, // 帮助serviceworker快速启动
 			skipWaiting: true // 删除旧的serviceworker
-		})
+		}),
+		new ManifestPlugin()
 	],
 	// node_modules单独打包
 	// 有公用的包不会多次引入

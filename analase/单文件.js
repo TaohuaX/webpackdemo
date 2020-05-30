@@ -3,10 +3,11 @@
 ;(function (modules) {
 	var installedModules = {}
 	function __webpack_require__(moduleId) {
+    // ./src/index.js
 		if (installedModules[moduleId]) {
 			return installedModules[moduleId].exports
 		}
-
+    
 		var module = (installedModules[moduleId] = {
 			exports: {}
 		})
